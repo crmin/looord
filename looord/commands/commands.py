@@ -28,10 +28,17 @@ def get_command_func(message_content):
     }
 
 
-async def execute_command(client, message):
+async def execute_command(client, message, logger, msg_id):
     if message.author.bot:
         return None
     comm_func = get_command_func(message.content)
     if comm_func['function'] is None:
+        logger.debug('<msg_id> Cannot found function'.format(msg_id=msg_id))
         return None
-    return await comm_func['function'](client, message, comm_func['parameters'])
+    else:
+        logger.debug('<msg_id> Get command function: function: {func}, parameters: {param}'.format(
+            msg_id=msg_id,
+            func=comm_func['function'],
+            param=comm_func['parameters']
+        ))
+    return await comm_func['function'](client, message, comm_func['parameters'], logger, msg_id)

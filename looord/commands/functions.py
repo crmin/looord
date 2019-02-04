@@ -9,7 +9,7 @@ from looord.commands.define import commands, prefix
 from looord.commands.utils import get_online_members
 
 
-async def bot_help(client, message, params):
+async def bot_help(client, message, params, **kwargs):
     msg_lst = []
     for comm_func, comm_v in commands.items():
         msg_lst.append('**{prefix}({commands})**: {desc}'.format(
@@ -20,24 +20,24 @@ async def bot_help(client, message, params):
     return await client.send_message(message.channel, '\n'.join(msg_lst))
 
 
-async def leader(client, message, params):
+async def leader(client, message, params, **kargs):
     online_members = get_online_members(client)
     today_leader = random.choice(online_members)
     return await client.send_message(message.channel, '오늘의 분대장은 ||{}||'.format(today_leader.mention))
 
 
-async def ack(client, message, params):
+async def ack(client, message, params, **kargs):
     return await client.send_message(message.channel, 'ack')
 
 
-async def history(client, message, params):
+async def history(client, message, params, **kargs):
     path = r6stats.save_history(params[0])
     await client.send_file(message.channel, path)
     os.remove(path)
     return None
 
 
-async def random_ops(client, message, params):
+async def random_ops(client, message, params, **kargs):
     random.shuffle(constants.defenders)
     random.shuffle(constants.attackers)
     def_sample = ', '.join(constants.defenders[:3])
@@ -49,7 +49,7 @@ async def random_ops(client, message, params):
     return await client.send_message(message.channel, msg)
 
 
-async def muzzle(client, message, params):
+async def muzzle(client, message, params, **kargs):
     gun_name = params[0]
     gun_list = []
     for gun, attachment in constants.gun2attachment.items():
