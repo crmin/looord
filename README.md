@@ -17,4 +17,6 @@ If exists `--debug` flag in command line, program run on **foreground** and
 display **DEBUG** level log as stdout and write **INFO** level log as file.
 
 ### No Flag
-If there is not any flag in command line, program run on **background**(daemon) and write **INFO** level log as file only. 
+If there is not any flag in command line, program run on **background**(daemon) and write **INFO** level log as file only.
+
+*daemonize not implemented yet* 
