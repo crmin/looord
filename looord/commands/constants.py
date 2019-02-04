@@ -1,0 +1,142 @@
+attackers = [
+    'Sledge', 'Thatcher',
+    'Ash', 'Thermite',
+    'Twitch', 'Montagne',
+    'Glaz', 'Fuze',
+    'Blitz', 'IQ',
+    'Buck',
+    'Blackbeard',
+    'Capitão',
+    'Hibana',
+    'Jackal',
+    'Ying',
+    'Zofia',
+    'Dokkaebi',
+    'Lion', 'Finka',
+    'Maverick',
+    'Nomad',
+]
+
+defenders = [
+    'Smoke', 'Mute',
+    'Castle', 'Pulse',
+    'Doc', 'Rook',
+    'Kapkan', 'Lord {--}7',
+    'Jäger', 'Bandit',
+    'Frost',
+    'Valkyrie',
+    'Caveira'
+    'Echo',
+    'Mira',
+    'Lesion',
+    'Ela',
+    'Vigil',
+    'Maestro', 'Alibi',
+    'Clash',
+    'Kaid',
+]
+
+attachment2gun = {
+    'muzzle brake': [
+        #Pistols
+        'P226 MK 25',
+        'M45 MEUSOC',
+        '5.7 USG',
+        'LFP586',
+        'P9',
+        'PMM',
+        'GSH-18',
+        'P12 (except IQ)',
+        'MK1 9mm',
+        'D-50',
+        'PRB92',
+        'P229',
+        'USP40',
+        'Q-929',
+        'RG15',
+        'KERATOS.357',
+        'Bailiff 410',
+        '1911 TACOPS',
+        'P-10C',
+        '.44 Mag Semi-Auto',
+        # DMRs
+        '417',
+        'OTs-03',
+        'CAMRS',
+        'SR-25',
+        'Mk 14 EBR',
+        # Others
+        'C8-SFW',
+        'P90',
+        'SPSMG9',
+        'AK-74M',
+    ],
+    'flash hider': [
+        'SMG-11',
+        'F2',
+        '6P41',
+        'AUG-A2',
+        'MK-17 CQB',
+        'M249',
+        'Type-89',
+        'Bearing 9',
+        'Spear.308',
+        'M4',
+        'FMG9',
+        'MP5',
+        '416-c',
+        'MP7',
+        'MPX',
+        'M12',
+        'K1A',
+        'ALDA 5.56',
+        '552 Commando',
+        'AK-12',
+        'M762',
+        'PARA-308',
+        'ARX20',
+        'AUG A3',
+    ],
+    'compensator': [
+        'L85',
+        'AR33',
+        'G36c',
+        'R4-C',
+        '556xi',
+        'G8A1',
+        'C7E',
+        'PDW9',
+        'LMG-E',
+        'T-95 LSW',
+        'V308',
+        'MP5k',
+        'UMP45',
+        '9x19vsn',
+        'Vector 45 ACP',
+        'Scorpion EVO 3 A1',
+        'T-5 SMG',
+        'Mx4 Storm',
+    ],
+    'suppressor': [
+        'MP5SD',
+        'P12(IQ)'
+    ],
+    'none': [
+        '9mm C1',
+        'LUISON (Caveria PRB92, Default suppressor)',
+    ],
+}
+
+attachment_kor = {
+    'muzzle brake': '포구제퇴기',
+    'flash hider': '소염기',
+    'compensator': '컴펜세이터',
+    'suppressor': '소음기',
+    'none': '없음',
+}
+
+gun2attachment = {
+    gun: attachment
+    for attachment, guns in attachment2gun.items()
+    for gun in guns
+}
