@@ -36,7 +36,7 @@ async def on_message(message):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--token', type=str, help='discord bot token')
+    parser.add_argument('-t', '--token', type=str, help='discord bot token')
     parser.add_argument('--dev', action="store_true", help='If exist this flag, bot run on foreground, not daemon')
     args = parser.parse_args()
 
