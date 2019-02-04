@@ -37,7 +37,11 @@ async def on_message(message):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--token', type=str, help='discord bot token')
-    parser.add_argument('--dev', action="store_true", help='If exist this flag, bot run on foreground, not daemon')
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--dev', action='store_true', help='If exist this flag, bot run on foreground, not daemon.'
+                                                          'Log level set to INFO')
+    group.add_argument('--debug', action='store_true', help='If exist this flag, bot run on foreground, not daemon'
+                                                            'Log level set to DEBUG')
     args = parser.parse_args()
 
     logger = logging.getLogger(__name__)
@@ -49,9 +53,12 @@ if __name__ == '__main__':
     file_hdlr.setFormatter(fmtr)
     logger.addHandler(file_hdlr)
 
-    if args.dev:
+    if args.dev or args.debug:
         stream_hdlr = logging.StreamHandler()
-        stream_hdlr.setLevel(logging.INFO)
+        if args.dev:
+            stream_hdlr.setLevel(logging.INFO)
+        elif args.debug:
+            stream_hdlr.setLevel(logging.DEBUG)
         stream_hdlr.setFormatter(fmtr)
         logger.addHandler(stream_hdlr)
 
