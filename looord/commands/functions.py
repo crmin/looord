@@ -2,11 +2,11 @@ import os
 
 from numpy import random
 
-from looord.commands import constants
-from looord.commands import msg_frame
-from looord.commands.crawler import r6stats
-from looord.commands.define import commands, prefix
-from looord.commands.utils import get_online_members
+from commands import constants
+from commands import msg_frame
+from commands.crawler import r6stats
+from commands.define import commands, prefix
+from commands.utils import get_online_members
 
 
 async def bot_help(client, message, params, *args, **kwargs):

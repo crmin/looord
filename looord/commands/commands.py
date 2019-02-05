@@ -1,5 +1,5 @@
-from looord.commands import functions
-from looord.commands.define import commands, prefix
+from commands import functions
+from commands.define import commands, prefix
 
 
 def get_command_func(message_content):

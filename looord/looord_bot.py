@@ -5,7 +5,7 @@ import logging
 
 import discord
 
-from looord.commands.commands import execute_command
+from commands.commands import execute_command
 
 
 client = discord.Client()
