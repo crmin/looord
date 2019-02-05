@@ -1,5 +1,8 @@
 # Looord: R6S Discord bot
 
+![Looord](https://i.imgur.com/EvGDuz0.png)
+Buff lord plz
+
 ## Installation
 
 ### Selenium web driver
