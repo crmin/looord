@@ -27,7 +27,7 @@ or, if use virtualenv or install to local, run next command in git root director
 $ pip install -r requirements.txt
 ```
 
-## Execute
+## Execution
 Starts with bot token
 ```bash
 $ python looord_bot.py --token <token> [--dev|--debug]
