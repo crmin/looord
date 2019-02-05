@@ -16,7 +16,7 @@ def get_command_func(message_content):
                 parameters = msg_chunks[msg_idx + 1:]
             else:
                 parameters = msg_chunks[msg_idx + 1: msg_idx + param_len + 1]
-            if len(parameters) < param_len:
+            if len(parameters) < param_len or len(parameters) == 0 and param_len == -1:
                 return {
                     'function': functions.bot_help,
                     'parameters': [],
