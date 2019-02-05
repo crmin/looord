@@ -12,7 +12,10 @@ def get_command_func(message_content):
             except ValueError:
                 continue
             param_len = comm_v['parameters']
-            parameters = msg_chunks[msg_idx + 1: msg_idx + param_len + 1]
+            if param_len == -1:
+                parameters = msg_chunks[msg_idx + 1:]
+            else:
+                parameters = msg_chunks[msg_idx + 1: msg_idx + param_len + 1]
             if len(parameters) < param_len:
                 return {
                     'function': functions.bot_help,

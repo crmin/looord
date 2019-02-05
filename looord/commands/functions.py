@@ -1,5 +1,6 @@
 import os
 
+import discord
 from numpy import random
 
 from commands import constants
@@ -65,3 +66,15 @@ async def muzzle(client, message, params, *args, **kwargs):
     if not msg:
         msg = '{}가 포함되는 총기를 찾을 수 없습니다'.format(gun_name)
     return await client.send_message(message.channel, msg)
+
+
+async def magical_conch(client, message, params, *args, **kwargs):
+    pick_item = random.choice(params)
+    embed = discord.Embed(
+        title='마법의 소라고둥님',
+        description='{} 중 어떤걸 선택할까요?'.format(', '.join(params)),
+        color=0x93263f
+    )
+    embed.add_field(name='마법의 소라고둥께서 말하시길', value='||{}||'.format(pick_item), inline=False)
+    embed.set_thumbnail(url='https://i.imgur.com/U6BsF6K.png')
+    return await client.send_message(message.channel, embed=embed)

@@ -38,4 +38,9 @@ commands = {
         'message': ['머즐', 'ㅁㅈ', 'muzzle', 'muz'],
         'help': '총구 부착물 추천 참고: https://www.reddit.com/comments/9dk0pm'
     },
+    'magical_conch': {
+        'parameters': -1,
+        'message': ['마법의소라고둥', '마법의소라고둥님', '소라', 'sora', 'conch', 'magical_conch', 'pick'],
+        'help': '명령 뒤에 따라오는 공백으로 구분된 문자열 중 하나를 임의로 선택합니다'
+    },
 }
