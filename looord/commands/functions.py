@@ -11,14 +11,17 @@ from commands.utils import get_online_members
 
 
 async def bot_help(client, message, params, *args, **kwargs):
-    msg_lst = []
+    embed = discord.Embed(
+        title='**How to use looord bot?**',
+        color=0x93263f
+    )
     for comm_func, comm_v in commands.items():
-        msg_lst.append('**{prefix}({commands})**: {desc}'.format(
-            prefix=prefix,
-            commands='|'.join(comm_v['message']),
-            desc=comm_v['help']
-        ))
-    return await client.send_message(message.channel, '\n'.join(msg_lst))
+        embed.add_field(
+            name='{prefix}({commands})'.format(prefix=prefix, commands='|'.join(comm_v['message'])),
+            value='{desc}'.format(desc=comm_v['help']),
+            inline=False
+        )
+    return await client.send_message(message.channel, embed=embed)
 
 
 async def leader(client, message, params, *args, **kwargs):
