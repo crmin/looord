@@ -138,12 +138,12 @@ async def bot_status(client, message, *args, **kwargs):
     )
     embed.add_field(
         name='# of chats',
-        value='{}'.format(get_num_chat()),
+        value='{}'.format(get_num_chat(message.channel)),
         inline=True
     )
     embed.add_field(
         name='# of commands',
-        value='{}'.format(get_num_command()),
+        value='{}'.format(get_num_command(message.channel)),
         inline=True
     )
     return await client.send_message(message.channel, embed=embed)

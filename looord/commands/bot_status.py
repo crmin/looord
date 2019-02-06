@@ -3,14 +3,15 @@ from datetime import datetime
 import pytz
 
 _bot_start_time = None
-_chat_num = 0  # number of chatting after startup (include command)
-_command_num = 0  # num of command after startup
+_chat_num = {}  # number of chatting after startup (include command)
+_command_num = {}  # num of command after startup
 
 
 def set_bot_start_time():
     global _bot_start_time
     if _bot_start_time is not None:
         return None
+    # is None
     _bot_start_time = datetime.now(tz=pytz.timezone('Asia/Seoul'))
     return None
 
@@ -40,22 +41,30 @@ def get_uptime():
     )
 
 
-def find_chat():
+def find_chat(channel):
     global _chat_num
-    _chat_num += 1
+    if channel.server.id not in _chat_num:
+        _chat_num[channel.server.id] = 0
+    _chat_num[channel.server.id] += 1
 
 
-def get_num_chat():
+def get_num_chat(channel):
     global _chat_num
-    return _chat_num
+    if channel.server.id not in _chat_num:
+        _chat_num[channel.server.id] = 0
+    return _chat_num[channel.server.id]
 
 
-def find_command():
+def find_command(channel):
     global _command_num
-    _command_num += 1
+    if channel.server.id not in _command_num:
+        _command_num[channel.server.id] = 0
+    _command_num[channel.server.id] += 1
 
 
-def get_num_command():
+def get_num_command(channel):
     global _command_num
-    return _command_num
+    if channel.server.id not in _command_num:
+        _command_num[channel.server.id] = 0
+    return _command_num[channel.server.id]
 
