@@ -41,13 +41,16 @@ async def history(client, message, params, *args, **kwargs):
 async def random_ops(client, message, params, *args, **kwargs):
     random.shuffle(constants.defenders)
     random.shuffle(constants.attackers)
-    def_sample = ', '.join(constants.defenders[:3])
-    atk_sample = ', '.join(constants.attackers[:3])
-    msg = msg_frame.random_ops.format(
-        atk_ops=atk_sample,
-        def_ops=def_sample
+    def_sample = '\n'.join(['* {}'.format(each) for each in constants.defenders[:3]])
+    atk_sample = '\n'.join(['* {}'.format(each) for each in constants.attackers[:3]])
+    embed = discord.Embed(
+        title='Random Ops',
+        description='*아래 오퍼 중 순서대로 골라주세요. 앞에 있는 오퍼의 우선순위가 높습니다.*',
+        color=0x93263f
     )
-    return await client.send_message(message.channel, msg)
+    embed.add_field(name='Attacker', value='{}'.format(atk_sample), inline=True)
+    embed.add_field(name='Defender', value='{}'.format(def_sample), inline=True)
+    return await client.send_message(message.channel, embed=embed)
 
 
 async def muzzle(client, message, params, *args, **kwargs):
