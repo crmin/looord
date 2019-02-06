@@ -69,20 +69,27 @@ async def muzzle(client, message, params, *args, **kwargs):
         description='{}이(가) 포함되는 총에 대한 부착물을 보여줍니다'.format(gun_name),
         color=0x93263f
     )
-    for gun, attachment in constants.gun2attachment.items():
-        if gun_name.lower() in gun.lower():
-            embed.add_field(
-                name=gun,
-                value='{att} ({att_kor})'.format(att=attachment, att_kor=constants.attachment_kor[attachment]),
-                inline=True
-            )
-            is_found = True
-    if not is_found:
+    if len(gun_name) < 2:
         embed.add_field(
-            name='Not found',
-            value='{}가 포함되는 총기를 찾을 수 없습니다'.format(gun_name),
-            inline=True
+            name='Error: Too short gun name',
+            value='두 글자 이상 검색해주세요'.format(gun_name),
+            inline=False
         )
+    else:
+        for gun, attachment in constants.gun2attachment.items():
+            if gun_name.lower() in gun.lower():
+                embed.add_field(
+                    name=gun,
+                    value='{att} ({att_kor})'.format(att=attachment, att_kor=constants.attachment_kor[attachment]),
+                    inline=True
+                )
+                is_found = True
+        if not is_found:
+            embed.add_field(
+                name='Error: Not found',
+                value='{}가 포함되는 총기를 찾을 수 없습니다'.format(gun_name),
+                inline=False
+            )
     return await client.send_message(message.channel, embed=embed)
 
 
