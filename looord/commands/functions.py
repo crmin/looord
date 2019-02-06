@@ -48,8 +48,8 @@ async def random_ops(client, message, params, *args, **kwargs):
         description='*아래 오퍼 중 순서대로 골라주세요. 앞에 있는 오퍼의 우선순위가 높습니다.*',
         color=0x93263f
     )
-    embed.add_field(name='Attacker', value='{}'.format(atk_sample), inline=True)
-    embed.add_field(name='Defender', value='{}'.format(def_sample), inline=True)
+    embed.add_field(name='Attacker :gun:', value='{}'.format(atk_sample), inline=True)
+    embed.add_field(name='Defender :shield:', value='{}'.format(def_sample), inline=True)
     return await client.send_message(message.channel, embed=embed)
 
 
