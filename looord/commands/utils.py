@@ -1,10 +1,10 @@
 import discord
 
 
-def get_online_members(client):
+def get_online_members(channel):
     members = [
         member
-        for member in client.get_all_members()
+        for member in channel.server.members
         if member.status == discord.Status.online and
         not member.bot
     ]
