@@ -5,7 +5,7 @@ from numpy import random
 
 from commands import constants
 from commands.bot_status import get_num_command, get_num_chat, get_start_time, get_uptime
-from commands.crawler import r6stats, server_stat
+from commands.crawler import r6stats, r6s_server
 from commands.define import commands, prefix
 from commands.utils import get_online_members
 
@@ -106,7 +106,7 @@ async def magical_conch(client, message, params, *args, **kwargs):
 
 
 async def server_status(client, message, *args, **kwargs):
-    error_num = server_stat.get_error_num()
+    error_num = r6s_server.get_error_num()
     normal, warning, error = 0x17a2b8, 0xffc107, 0xdc3545
     status = normal
     if error_num >= 5:
