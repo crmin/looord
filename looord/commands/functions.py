@@ -63,20 +63,27 @@ async def random_ops(client, message, params, *args, **kwargs):
 
 async def muzzle(client, message, params, *args, **kwargs):
     gun_name = params[0]
-    gun_list = []
+    is_found = False
+    embed = discord.Embed(
+        title='총구 부착물 :gun:',
+        description='{}이(가) 포함되는 총에 대한 부착물을 보여줍니다'.format(gun_name),
+        color=0x93263f
+    )
     for gun, attachment in constants.gun2attachment.items():
         if gun_name.lower() in gun.lower():
-            gun_list.append(
-                '{gun}: {att} ({att_kor})'.format(
-                    gun=gun,
-                    att=attachment,
-                    att_kor=constants.attachment_kor[attachment]
-                )
+            embed.add_field(
+                name=gun,
+                value='{att} ({att_kor})'.format(att=attachment, att_kor=constants.attachment_kor[attachment]),
+                inline=True
             )
-    msg = '\n'.join(gun_list)
-    if not msg:
-        msg = '{}가 포함되는 총기를 찾을 수 없습니다'.format(gun_name)
-    return await client.send_message(message.channel, msg)
+            is_found = True
+    if not is_found:
+        embed.add_field(
+            name='Not found',
+            value='{}가 포함되는 총기를 찾을 수 없습니다'.format(gun_name),
+            inline=True
+        )
+    return await client.send_message(message.channel, embed=embed)
 
 
 async def magical_conch(client, message, params, *args, **kwargs):
