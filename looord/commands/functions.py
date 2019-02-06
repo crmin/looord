@@ -27,7 +27,12 @@ async def bot_help(client, message, params, *args, **kwargs):
 async def leader(client, message, params, *args, **kwargs):
     online_members = get_online_members(message.channel)
     today_leader = random.choice(online_members)
-    return await client.send_message(message.channel, '오늘의 분대장은 {}'.format(today_leader.mention))
+    embed = discord.Embed(
+        title='오늘의 분대장은?',
+        description='{}'.format(today_leader.mention),
+        color=0x93263f
+    )
+    return await client.send_message(message.channel, embed=embed)
 
 
 async def ack(client, message, params, *args, **kwargs):
