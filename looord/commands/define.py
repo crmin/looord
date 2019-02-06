@@ -43,4 +43,9 @@ commands = {
         'message': ['마법의소라고둥', '마법의소라고둥님', '소라', 'sora', 'conch', 'magical_conch', 'pick'],
         'help': '명령 뒤에 따라오는 공백으로 구분된 문자열 중 하나를 임의로 선택합니다'
     },
+    'server_status': {
+        'parameters': 0,
+        'message': ['서버', '서버상태', '유비가또', 'server', 'serverstatus', 'status'],
+        'help': 'r6s 서버 상태 리포트 결과를 확인합니다 https://outage.report/rainbow-six'
+    },
 }

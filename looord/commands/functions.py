@@ -5,7 +5,7 @@ from numpy import random
 
 from commands import constants
 from commands import msg_frame
-from commands.crawler import r6stats
+from commands.crawler import r6stats, server_stat
 from commands.define import commands, prefix
 from commands.utils import get_online_members
 
@@ -77,4 +77,21 @@ async def magical_conch(client, message, params, *args, **kwargs):
     )
     embed.add_field(name='마법의 소라고둥께서 말하시길', value='||{}||'.format(pick_item), inline=False)
     embed.set_thumbnail(url='https://i.imgur.com/U6BsF6K.png')
+    return await client.send_message(message.channel, embed=embed)
+
+
+async def server_status(client, message, *args, **kwargs):
+    error_num = server_stat.get_error_num()
+    normal, warning, error = 0x17a2b8, 0xffc107, 0xdc3545
+    status = normal
+    if error_num >= 5:
+        status = error
+    elif error_num >= 3:
+        status = warning
+    embed = discord.Embed(
+        title='r6s server status',
+        description='{} (Reports in last 20 minutes)'.format(error_num),
+        url='https://outage.report/rainbow-six',
+        color=status
+    )
     return await client.send_message(message.channel, embed=embed)
