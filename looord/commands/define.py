@@ -48,4 +48,9 @@ commands = {
         'message': ['서버', '서버상태', '유비가또', '감자서버', 'server', 'serverstatus', 'status', 'potato'],
         'help': 'r6s 서버 상태 리포트 결과를 확인합니다 https://outage.report/rainbow-six'
     },
+    'bot_status': {
+        'parameters': 0,
+        'message': ['봇', '봇상태', 'bot', 'status', 'stat'],
+        'help': '봇 상태를 표시합니다'
+    },
 }

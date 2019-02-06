@@ -1,3 +1,4 @@
+from commands.bot_status import find_chat, find_command
 from commands import functions
 from commands.define import commands, prefix
 
@@ -35,10 +36,12 @@ async def execute_command(client, message, logger, msg_id):
     if message.author.bot:
         return None
     comm_func = get_command_func(message.content)
+    find_chat()
     if comm_func['function'] is None:
         logger.debug('<msg_id> Cannot found function'.format(msg_id=msg_id))
         return None
     else:
+        find_command()
         logger.debug('<msg_id> Get command function: function: {func}, parameters: {param}'.format(
             msg_id=msg_id,
             func=comm_func['function'],

@@ -4,7 +4,7 @@ import discord
 from numpy import random
 
 from commands import constants
-from commands import msg_frame
+from commands.bot_status import get_num_command, get_num_chat, get_start_time, get_uptime
 from commands.crawler import r6stats, server_stat
 from commands.define import commands, prefix
 from commands.utils import get_online_members
@@ -118,5 +118,32 @@ async def server_status(client, message, *args, **kwargs):
         description='{} (Reports in last 20 minutes)'.format(error_num),
         url='https://outage.report/rainbow-six',
         color=status
+    )
+    return await client.send_message(message.channel, embed=embed)
+
+
+async def bot_status(client, message, *args, **kwargs):
+    embed = discord.Embed(
+        title='지금 봇 상태는?',
+        description=':robot: :question:',
+        color=0x93263f
+    )
+    embed.add_field(
+        name='When start? :alarm_clock:',
+        value='Bot run from {start_time} ({uptime})'.format(
+            start_time=get_start_time(),
+            uptime=get_uptime()
+        ),
+        inline=False
+    )
+    embed.add_field(
+        name='# of chats',
+        value='{}'.format(get_num_chat()),
+        inline=True
+    )
+    embed.add_field(
+        name='# of commands',
+        value='{}'.format(get_num_command()),
+        inline=True
     )
     return await client.send_message(message.channel, embed=embed)

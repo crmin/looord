@@ -5,6 +5,7 @@ import logging
 
 import discord
 
+from commands.bot_status import set_bot_start_time
 from commands.commands import execute_command
 
 
@@ -13,6 +14,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
+    set_bot_start_time()
     logger.info('Bot loaded')
 
 
