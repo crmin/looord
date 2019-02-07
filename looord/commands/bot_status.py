@@ -2,23 +2,29 @@ from datetime import datetime
 
 import pytz
 
-_bot_start_time = None
+_bot_start_time = {}
 _chat_num = {}  # number of chatting after startup (include command)
 _command_num = {}  # num of command after startup
 
 
-def set_bot_start_time():
+def set_bot_start_time(server=None, client=None):
     global _bot_start_time
-    if _bot_start_time is not None:
-        return None
-    # is None
-    _bot_start_time = datetime.now(tz=pytz.timezone('Asia/Seoul'))
+    if server is None:  # set about all servers
+        for server in client.servers:
+            set_bot_start_time(server)
+    else:
+        if server.id in _bot_start_time:
+            return None
+        # is not exist
+        _bot_start_time[server.id] = datetime.now(tz=pytz.timezone('Asia/Seoul'))
     return None
 
 
-def get_startup_time_delta():
+def get_startup_time_delta(server):
     global _bot_start_time
-    delta = (datetime.now(tz=pytz.timezone('Asia/Seoul')) - _bot_start_time).seconds
+    if server.id not in _bot_start_time:
+        _bot_start_time[server.id] = None
+    delta = (datetime.now(tz=pytz.timezone('Asia/Seoul')) - _bot_start_time[server.id]).seconds
     days = delta // (3600 * 24)
     hours = delta % (3600 * 24) // 3600
     minutes = delta % (3600 * 24) % 3600 // 60
@@ -26,13 +32,15 @@ def get_startup_time_delta():
     return days, hours, minutes, seconds
 
 
-def get_start_time():
+def get_start_time(server):
     global _bot_start_time
-    return _bot_start_time.strftime('%Y.%m.%d %H:%M:%S')
+    if server.id not in _bot_start_time:
+        _bot_start_time[server.id] = None
+    return _bot_start_time[server.id].strftime('%Y.%m.%d %H:%M:%S')
 
 
-def get_uptime():
-    days, hours, minutes, seconds = get_startup_time_delta()
+def get_uptime(server):
+    days, hours, minutes, seconds = get_startup_time_delta(server)
     return '{upt_d}d {upt_h}h {upt_m}m {upt_s}s'.format(
         upt_d=days,
         upt_h=hours,

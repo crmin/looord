@@ -14,8 +14,14 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    set_bot_start_time()
+    set_bot_start_time(client=client)
     logger.info('Bot loaded')
+
+
+@client.event
+async def on_server_join(server):
+    set_bot_start_time(server)
+    logger.info('Add bot to new server: {}'.format(server.id))
 
 
 @client.event

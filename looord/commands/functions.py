@@ -131,8 +131,8 @@ async def bot_status(client, message, *args, **kwargs):
     embed.add_field(
         name='When start? :alarm_clock:',
         value='Bot run from {start_time} ({uptime})'.format(
-            start_time=get_start_time(),
-            uptime=get_uptime()
+            start_time=get_start_time(message.channel.server),
+            uptime=get_uptime(message.channel.server)
         ),
         inline=False
     )
