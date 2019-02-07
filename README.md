@@ -79,7 +79,6 @@ $ python looord_bot.py --token <token> [--dev|--debug]
 **DEBUG** level의 로그를 stdout으로 보여줍니다. 로그 파일에는 **INFO** level의 로그가 기록됩니다.
 
 #### No Flag
-If there is not any flag in command line, program run on **background**(daemon) and write **INFO** level log as file only.
 실행시 flag를 지정하지 않으신다면, 프로그램은 **background**(daemon)로 실행되고,
 stdout 없이 로그 파일에만 **INFO** level의 로그가 기록됩니다.
 
