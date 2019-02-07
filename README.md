@@ -35,10 +35,11 @@ $ pip install -r requirements.txt
 2019년 2월 7일 기준으로 Python 3.7 버전에 대해 아래 세 package의 호환성 문제가 있습니다.
 
 Python 3.7에서는 `async`와 `await`가 keyword로 등록되었습니다.
-(What’s New In Python 3.7)[https://docs.python.org/3/whatsnew/3.7.html]
+(What’s New In Python 3.7 | Changes in Python Behavior)[https://docs.python.org/3/whatsnew/3.7.html#changes-in-python-behavior]
 
-> Backwards incompatible syntax changes:
-async and await are now reserved keywords.
+> async and await names are now reserved keywords.
+Code using these names as identifiers will now raise a SyntaxError.
+(Contributed by Jelle Zijlstra in [bpo-30406](https://bugs.python.org/issue30406).)
 
 `discord`, `aiohttp`, `websockets` 세 package에서 호환성 문제가 발견되었으며,
 에러가 발생하는 부분은 모두 아래와 같이 `asycio.async`를 호출하는 부분입니다.
