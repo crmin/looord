@@ -35,7 +35,7 @@ $ pip install -r requirements.txt
 2019년 2월 7일 기준으로 Python 3.7 버전에 대해 아래 세 package의 호환성 문제가 있습니다.
 
 Python 3.7에서는 `async`와 `await`가 keyword로 등록되었습니다.
-(What’s New In Python 3.7 | Changes in Python Behavior)[https://docs.python.org/3/whatsnew/3.7.html#changes-in-python-behavior]
+[What’s New In Python 3.7 | Changes in Python Behavior](https://docs.python.org/3/whatsnew/3.7.html#changes-in-python-behavior)
 
 > async and await names are now reserved keywords.
 Code using these names as identifiers will now raise a SyntaxError.
