@@ -87,8 +87,11 @@ stdout 없이 로그 파일에만 **INFO** level의 로그가 기록됩니다.
 ```bash
 $ nohup python looord_bot.py --token <token> [--dev|--debug] &
 ``` 
-또는, pipenv를 이용해서
+*또는, pipenv를 이용해서*
 
 ```bash
 $ nohup pipenv run python looord_bot.py --token <token> [--dev|--debug] &
 ``` 
+
+## Patch Note
+[여기](https://github.com/blinglnav/looord/wiki/Patch-note)에서 확인 할 수 있습니다.
