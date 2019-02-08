@@ -11,8 +11,8 @@ def write_now_datetime():
     now_str = now.strftime('%Y-%m-%d %H:%M:%S.%f')
     with open('./healthcheck.txt', 'w') as f:
         f.write(
-            'Health checker executed at: {}\n'.format(_start_time)
-            'Last checked: {}'.format(now_str)
+            'Health checker executed at: {}\n'
+            'Last checked: {}'.format(_start_time, now_str)
         )
     return None
 
