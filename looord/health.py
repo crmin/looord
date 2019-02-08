@@ -12,7 +12,7 @@ def write_now_datetime():
     with open('./healthcheck.txt', 'w') as f:
         f.write(
             'Health checker executed at: {}\n'
-            'Last checked: {}'.format(_start_time, now_str)
+            'Last checked:               {}\n'.format(_start_time, now_str)
         )
     return None
 
