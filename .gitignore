@@ -411,3 +411,5 @@ chromedriver
 */history_imgs/*
 
 nohup.out
+
+healthcheck.txt
