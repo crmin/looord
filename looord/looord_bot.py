@@ -2,13 +2,11 @@ import argparse
 from datetime import datetime
 import hashlib
 import logging
-import threading
 
 import discord
 
 from commands.bot_status import set_bot_start_time
 from commands.commands import execute_command
-import health
 
 
 client = discord.Client()
@@ -73,10 +71,4 @@ if __name__ == '__main__':
         logger.addHandler(stream_hdlr)
 
     logger.info('Program Executed')
-
-    # head check
-    t = threading.Thread(target=health.run_heath_check)
-    t.start()
-    logger.info('Health Checker Executed')
-    
     client.run(args.token)
