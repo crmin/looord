@@ -1,6 +1,6 @@
 import pytest
-from looord.commands.define import get_command_func
-from looord.commands import functions
+from commands.commands import get_command_func
+from commands import functions
 
 
 @pytest.mark.parametrize('msg,func,params', [
