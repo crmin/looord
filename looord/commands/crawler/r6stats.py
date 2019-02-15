@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 from selenium import webdriver
 
-from commands.crawler.const import headers
+from commands.crawler.const import headers, stat_card_idx, stat_section_idx, kills_breakdown_idx
 
 _driver = None
 
@@ -37,6 +37,41 @@ def get_uuid(username, platform=Platform.pc):
     return user_uuids
 
 
+def get_simple_info(uuid):
+    url = 'https://r6stats.com/stats/{}/'.format(uuid)
+    resp = requests.get(url, headers=headers)
+    soup = BeautifulSoup(resp.text, 'lxml')
+    username = soup.find('h1', class_='username').text
+    profile_img = soup.find('img', class_='profile')['src']
+    ranks = soup.find_all('div', class_='season-rank')
+    stat_cards = soup.find_all('div', class_='stat-card')
+    return {
+        'url': url,
+        'username': username,
+        'profile_img': profile_img,
+        'rank': ranks[0].img['title'],
+        'ranked_stats': {
+            stat_name: stat_value.find('span', class_='stat-count').text
+            for stat_name, stat_value in zip(stat_section_idx, stat_cards[stat_card_idx.index('ranked_stats')]
+                .find('div', class_='card__content')
+                .find_all('div', class_='stat-section'))
+        },
+        'casual_stats': {
+            stat_name: stat_value.find('span', class_='stat-count').text
+            for stat_name, stat_value in zip(stat_section_idx, stat_cards[stat_card_idx.index('casual_stats')]
+                .find('div', class_='card__content')
+                .find_all('div', class_='stat-section'))
+        },
+        'overall_stats': {
+            stat_name: stat_value.find('span', class_='stat-count').text
+            for stat_name, stat_value in zip(stat_section_idx, stat_cards[stat_card_idx.index('overall_stats')]
+                .find('div', class_='card__content')
+                .find_all('div', class_='stat-section'))
+        },
+    }
+
+
+# Legacy code: $hist <username> --> send screenshot to channel
 def get_webdriver(webdriver_path=None):
     global _driver
     if _driver is None:
