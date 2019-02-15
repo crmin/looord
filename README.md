@@ -6,19 +6,9 @@
 ## Installation
 
 ### Selenium web driver
-이 프로젝트는 (headless chrome을 사용하는) `$history` 명령어를 위해 chrome web driver가 필요합니다.
+**이 프로젝트는 201902160020 업데이트부터 selenium을 사용하지 않습니다.**
 
-macOS나 Windows 환경에서는 [여기](http://chromedriver.chromium.org/downloads)에서 Chrome Webdriver를 다운로드 하실 수 있습니다.
-chromedriver 파일은 `[project_root]/commands/crawler/webdrivers/`에 위치해주시면 됩니다.
-
-만약, 이 프로젝트를 Linux(예시에서는 Ubuntu)에서 실행하기 위해서는 먼저 다음 명령어를 이용해서 webdriver를 다운로드 하셔야합니다.
-```bash
-$ sudo apt-get install chromium-chromedriver
-```
-그리고 Symbolic link를 이용해서 webdriver 파일의 링크 파일을 `[project_root]/commands/crawler/webdrivers/`에 생성합니다.
- ```bash
-$ ln -s /usr/lib/chromium-browser/chromedriver [webdrivers_dir]
-```
+레거시 코드는 여전히 모듈 안에 존재하니 언제든 되살릴 수 있습니다.
 
 ### Python packages
 만약 Pipenv를 이용하신다면 다음 명령어를 이용하시면 됩니다.
