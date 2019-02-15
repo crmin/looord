@@ -49,7 +49,7 @@ def get_simple_info(uuid):
         'url': url,
         'username': username,
         'profile_img': profile_img,
-        'rank': ranks[0].img['title'],
+        'rank': ' > '.join(sorted([rank.img['title'] for rank in ranks[:3]], reverse=True)),
         'ranked_stats': {
             stat_name: stat_value.find('span', class_='stat-count').text
             for stat_name, stat_value in zip(stat_section_idx, stat_cards[stat_card_idx.index('ranked_stats')]

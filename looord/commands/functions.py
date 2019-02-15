@@ -40,10 +40,50 @@ async def ack(client, message, params, *args, **kwargs):
 
 
 async def history(client, message, params, *args, **kwargs):
-    path = r6stats.save_history(params[0])
-    await client.send_file(message.channel, path)
-    os.remove(path)
-    return None
+    uuid = r6stats.get_uuid(params[0])[0]
+    simple_info = r6stats.get_simple_info(uuid)
+    embed = discord.Embed(
+        title='R6Stats: `{}`'.format(simple_info['username']),
+        description=simple_info['url'],
+        color=0x93263f,
+    )
+    embed.add_field(
+        name='Recent Rank',
+        value='{}'.format(simple_info['rank']),
+        inline=False
+    )
+    embed.add_field(
+        name='[Rank] Kills/Match',
+        value='{}'.format(simple_info['ranked_stats']['kills/match']),
+        inline=True
+    )
+    embed.add_field(
+        name='[Casual] Kills/Match',
+        value='{}'.format(simple_info['casual_stats']['kills/match']),
+        inline=True
+    )
+    embed.add_field(
+        name='[Rank] K/D Ratio',
+        value='{}'.format(simple_info['ranked_stats']['k/d ratio']),
+        inline=True
+    )
+    embed.add_field(
+        name='[Casual] K/D Ratio',
+        value='{}'.format(simple_info['casual_stats']['k/d ratio']),
+        inline=True
+    )
+    embed.add_field(
+        name='[Rank] W/L Ratio',
+        value='{}'.format(simple_info['ranked_stats']['w/l ratio']),
+        inline=True
+    )
+    embed.add_field(
+        name='[Casual] W/L Ratio',
+        value='{}'.format(simple_info['casual_stats']['w/l ratio']),
+        inline=True
+    )
+    embed.set_thumbnail(url=simple_info['profile_img'])
+    return await client.send_message(message.channel, embed=embed)
 
 
 async def random_ops(client, message, params, *args, **kwargs):
