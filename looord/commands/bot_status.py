@@ -24,11 +24,11 @@ def get_startup_time_delta(server):
     global _bot_start_time
     if server.id not in _bot_start_time:
         _bot_start_time[server.id] = None
-    delta = (datetime.now(tz=pytz.timezone('Asia/Seoul')) - _bot_start_time[server.id]).seconds
-    days = delta // (3600 * 24)
-    hours = delta % (3600 * 24) // 3600
-    minutes = delta % (3600 * 24) % 3600 // 60
-    seconds = delta % (3600 * 24) % 3600 % 60
+        delta = (datetime.now(tz=pytz.timezone('Asia/Seoul')) - _bot_start_time[server.id])
+        days = delta.days
+        hours = delta.seconds % (3600 * 24) // 3600
+        minutes = delta.seconds % (3600 * 24) % 3600 // 60
+        seconds = delta.seconds % (3600 * 24) % 3600 % 60
     return days, hours, minutes, seconds
 
 
