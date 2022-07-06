@@ -9,7 +9,7 @@ daemonize==2.5.0
 discord==0.16.12
 discord.py==0.16.12
 idna==2.8
-lxml==4.3.0
+lxml==4.9.1
 more-itertools==5.0.0
 multidict==4.5.2
 numpy==1.16.1
